@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{97bc228a-029d-44ad-8d4f-31c1d6cafae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ECS">
+      <UniqueIdentifier>{b467c804-b3af-4a13-9d0c-a424e1dd8379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{4fc55baa-29a1-435f-a346-2a33bab8d6f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Structs">
+      <UniqueIdentifier>{ce9c1c34-659d-472c-87e6-1beb1b2e76bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.hpp">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.hpp">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="UILabelComponent.hpp">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.hpp">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.hpp">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS.hpp">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlComponent.hpp">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.hpp">
+      <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Disk.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Assets.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS.cpp">
+      <Filter>ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
