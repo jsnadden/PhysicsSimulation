@@ -19,4 +19,9 @@ struct Disk
 		centre.x = x;
 		centre.y = y;
 	}
+
+	float Area()
+	{
+		return PI * radius * radius;
+	}
 };

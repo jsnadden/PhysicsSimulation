@@ -87,19 +87,53 @@ void Game::Update()
     
     // Collision handling
 
-    Vector2D v0, v1;
-
-    for (auto first = colliders.begin(); first != colliders.end(); ++first) {
+     for (auto first = colliders.begin(); first != colliders.end(); ++first) {
         for (auto second = first + 1; second != colliders.end(); ++second) {
             
             if (Collision::Disks((*first)->getComponent<TransformComponent>().disk, (*second)->getComponent<TransformComponent>().disk))
             {
-                //std::cout << "Collision detected!" << std::endl;
-                v0 = (*first)->getComponent<TransformComponent>().disk.centre;
-                v1 = (*second)->getComponent<TransformComponent>().disk.centre;
-                (*first)->getComponent<TransformComponent>().ApplyForce(10.0f*(v0-v1));
-                (*second)->getComponent<TransformComponent>().ApplyForce(10.0f * (v1 - v0));
+                std::cout << "Collision" << std::endl;
+
+                // Get collision parameters
+                Vector2D q0 = (*first)->getComponent<TransformComponent>().disk.centre;
+                Vector2D q1 = (*second)->getComponent<TransformComponent>().disk.centre;
+                Vector2D u0 = *(*first)->getComponent<TransformComponent>().GetVelocity();
+                Vector2D u1 = *(*second)->getComponent<TransformComponent>().GetVelocity();
+                float m0 = (*first)->getComponent<TransformComponent>().Mass();
+                float m1 = (*second)->getComponent<TransformComponent>().Mass();
+                float M = m0 + m1;
+                float r0 = (*first)->getComponent<TransformComponent>().Radius();
+                float r1 = (*second)->getComponent<TransformComponent>().Radius();
+
+                // Set up normal+tangent basis at approximate contact point
+                Vector2D normal = q1 - q0;
+                float distance = normal.Norm();
+                normal.Normalise();
+                Vector2D tangent = normal.Orth();
+
+                // Project velocity vectors onto our basis
+                float n0 = u0.Dot(normal);
+                float t0 = u0.Dot(tangent);;
+                float n1 = u1.Dot(normal);;
+                float t1 = u1.Dot(tangent);;
+
+                // Solve 1D elastic collision in normal direction
+                float v0 = ((m0 - m1) / M) * n0 + (2.0f * m1 / M) * n1;
+                float v1 = (2.0f * m0 / M) * n0 + ((m1 - m0) / M) * n1;
+                (*first)->getComponent<TransformComponent>().SetVelocity( v0 * normal + t0 * tangent);
+                (*second)->getComponent<TransformComponent>().SetVelocity(v1 * normal + t1 * tangent);
+
+                // Separate colliders
+                (*first)->getComponent<TransformComponent>().Translate( -0.5f * (r0 + r1 - distance) * normal);
+                (*second)->getComponent<TransformComponent>().Translate(0.5f * (r0 + r1 - distance) * normal);
             }
+
+            // Attractive force
+            /*Vector2D sep = (*second)->getComponent<TransformComponent>().disk.centre - (*first)->getComponent<TransformComponent>().disk.centre;
+            Vector2D force = 100.0f * sep;
+            (*first)->getComponent<TransformComponent>().ApplyForce(force);
+            (*second)->getComponent<TransformComponent>().ApplyForce(-1.0f * force);*/
+
 
         }
     }
@@ -118,7 +152,7 @@ void Game::LateUpdate()
 
     for (auto& c : colliders)
     {
-        energy += (c->getComponent<TransformComponent>().Energy()) / 1000.0f;
+        energy += (c->getComponent<TransformComponent>().Energy()) / 1000000.0f;
     }
 
     std::cout << "Current total energy: " << energy << std::endl;

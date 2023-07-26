@@ -67,6 +67,11 @@ struct Vector2D
 		y = 0.0f;
 	}
 
+	float Dot(const Vector2D& v)
+	{
+		return (x * v.x) + (y * v.y);
+	}
+
 	float NormSquared()
 	{
 		return x * x + y * y;
@@ -74,7 +79,7 @@ struct Vector2D
 
 	float Norm()
 	{
-		return static_cast<float>(sqrt(x * x + y * y));
+		return sqrt(x * x + y * y);
 	}
 
 	void Normalise()
@@ -98,6 +103,11 @@ struct Vector2D
 		{
 			return Vector2D(x,y);
 		}
+	}
+
+	Vector2D Orth()
+	{
+		return Vector2D(-y, x);
 	}
 
 	static Vector2D RotateVector(Vector2D& v, float theta)

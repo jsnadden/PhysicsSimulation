@@ -40,6 +40,6 @@ bool Collision::AABB(const SDL_Rect rectA, const SDL_Rect rectB)
 bool Collision::Disks(Disk dA, Disk dB)
 {
 	Vector2D separation = dA.centre - dB.centre;
-	return (separation.Norm() <= dA.radius + dB.radius);
+	return (separation.NormSquared() <= (dA.radius + dB.radius) * (dA.radius + dB.radius));
 }
 
