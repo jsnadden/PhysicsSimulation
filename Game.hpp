@@ -25,7 +25,7 @@ public:
 
 private:
 
-	const int FRAME_RATE = 60;
+	const int FRAME_RATE = 120;
 	const float FRAME_SECS = 1.0f / FRAME_RATE;
 
 	static Game* instance;

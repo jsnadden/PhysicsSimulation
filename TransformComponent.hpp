@@ -16,7 +16,7 @@ private:
 	float density;
 	float mass;
 
-	const float GRAV_ACC = 1000.0f;
+	const float GRAV_ACC = 1.0f;
 
 public:
 
@@ -55,7 +55,7 @@ public:
 	void Update() override
 	{
 		// Gravity
-		velocity.y += GRAV_ACC * timer->DeltaTime();
+		velocity.y += GRAV_ACC * mass * timer->DeltaTime();
 
 		disk.centre.x += 0.5f * velocity.x * timer->DeltaTime();
 		disk.centre.y += 0.5f * velocity.y * timer->DeltaTime();

@@ -92,7 +92,7 @@ void Game::Update()
             
             if (Collision::Disks((*first)->getComponent<TransformComponent>().disk, (*second)->getComponent<TransformComponent>().disk))
             {
-                std::cout << "Collision" << std::endl;
+                //std::cout << "Collision" << std::endl;
 
                 // Get collision parameters
                 Vector2D q0 = (*first)->getComponent<TransformComponent>().disk.centre;
@@ -150,12 +150,13 @@ void Game::LateUpdate()
 
     float energy = 0;
 
-    for (auto& c : colliders)
+
+    // Compute total energy
+    /*for (auto& c : colliders)
     {
         energy += (c->getComponent<TransformComponent>().Energy()) / 1000000.0f;
-    }
-
-    std::cout << "Current total energy: " << energy << std::endl;
+    }*/
+    // std::cout << "Current total energy: " << energy << std::endl;
 
 }
 
@@ -210,6 +211,6 @@ void Game::Run()
         }
 
         timer->Update();
-        
+        //std::cout << timer->DeltaTime() << std::endl;
     }
 }
