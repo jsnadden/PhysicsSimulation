@@ -20,7 +20,9 @@ public:
 
 	enum groupLabels : std::size_t
 	{
-		colliderGroup
+		polyGroup,
+		diskGroup,
+		rectGroup
 	};
 
 private:
@@ -51,6 +53,11 @@ private:
 
 	Game();
 	~Game();
+
+	void HandleCollision();
+	void HandlePolyCollision();
+	void HandleDiskCollision();
+	void HandleRectCollision();
 
 };
 

@@ -6,7 +6,7 @@
 #include "Assets.hpp"
 #include "Animation.hpp"
 
-class SpriteComponent : public Component
+class DiskSpriteComponent : public Component
 {
 
 private:
@@ -14,14 +14,14 @@ private:
 	Graphics* graphics;
 	Assets* assets;
 
-	TransformComponent* transform;
+	DiskTransformComponent* transform;
 	SDL_Texture* texture;
 
 	SDL_Rect destRect;
 
 public:
 
-	SpriteComponent()
+	DiskSpriteComponent()
 	{
 		graphics = Graphics::GetInstance();
 		assets = Assets::GetInstance();
@@ -30,7 +30,7 @@ public:
 		
 	}
 
-	~SpriteComponent()
+	~DiskSpriteComponent()
 	{
 		graphics = nullptr;
 		assets = nullptr;
@@ -49,7 +49,7 @@ public:
 
 	void init() override
 	{
-		transform = &entity->getComponent<TransformComponent>();
+		transform = &entity->getComponent<DiskTransformComponent>();
 
 	}
 
@@ -68,3 +68,70 @@ public:
 
 };
 
+class RectSpriteComponent : public Component
+{
+
+private:
+
+	Graphics* graphics;
+	Assets* assets;
+
+	RectTransformComponent* transform;
+	SDL_Texture* texture1;
+	SDL_Texture* texture2;
+
+	SDL_Rect destRect;
+
+public:
+
+	bool change = false;
+
+	RectSpriteComponent()
+	{
+		graphics = Graphics::GetInstance();
+		assets = Assets::GetInstance();
+
+		setTextures("assets/rect1.png", "assets/rect2.png");
+
+	}
+
+	~RectSpriteComponent()
+	{
+		graphics = nullptr;
+		assets = nullptr;
+
+		transform = nullptr;
+		texture1 = nullptr;
+
+	}
+
+	void setTextures(std::string path1, std::string path2)
+	{
+		texture1 = assets->GetTexture(path1);
+		texture2 = assets->GetTexture(path2);
+	}
+
+
+
+	void init() override
+	{
+		transform = &entity->getComponent<RectTransformComponent>();
+
+	}
+
+	void EarlyUpdate() override
+	{
+		change = false;
+	}
+
+	void Update() override
+	{
+		destRect = transform->rect.SDLCast();
+	}
+
+	void draw() override
+	{
+		graphics->DrawTexture(change ? texture2 : texture1, NULL, &destRect, transform->GetRotation());
+	}
+
+};

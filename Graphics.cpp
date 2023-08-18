@@ -131,6 +131,7 @@ SDL_Texture* Graphics::LoadText(TTF_Font* font, std::string text, SDL_Color colo
 
 void Graphics::ClearRenderer()
 {
+	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xff);
 	SDL_RenderClear(renderer);
 }
 
@@ -143,3 +144,28 @@ void Graphics::DrawTexture(SDL_Texture* tex, SDL_Rect* sRect, SDL_Rect* dRect, f
 {
 	SDL_RenderCopyEx(renderer, tex, sRect, dRect, rot, NULL, flip);
 }
+
+void Graphics::DrawRectangle(SDL_Color colour, SDL_Rect* rect)
+{
+	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
+	SDL_RenderFillRect(renderer, rect);
+}
+
+void Graphics::DrawLine(SDL_Color colour, Vector2D start, Vector2D end)
+{
+	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
+	SDL_RenderDrawLine(renderer, (int)start.x, (int)start.y, (int)end.x, (int)end.y);
+}
+
+void Graphics::DrawPolygon(SDL_Color colour, Polygon poly)
+{
+	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
+
+	int n = poly.Size();
+
+	for (int i = 0; i < n; i++)
+	{
+		SDL_RenderDrawLine(renderer, poly.vertices[i].x, poly.vertices[i].y, poly.vertices[i + 1].x, poly.vertices[i + 1].y);
+	}
+}
+

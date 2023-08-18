@@ -137,12 +137,13 @@
     <ClInclude Include="Audio.hpp" />
     <ClInclude Include="Collision.hpp" />
     <ClInclude Include="Components.hpp" />
-    <ClInclude Include="ControlComponent.hpp" />
     <ClInclude Include="ECS.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Graphics.hpp" />
     <ClInclude Include="Disk.h" />
     <ClInclude Include="Input.hpp" />
+    <ClInclude Include="Polygon.hpp" />
+    <ClInclude Include="Rect.hpp" />
     <ClInclude Include="SpriteComponent.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="TransformComponent.hpp" />

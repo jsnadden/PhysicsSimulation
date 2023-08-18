@@ -33,9 +33,6 @@
     <ClInclude Include="ECS.hpp">
       <Filter>ECS</Filter>
     </ClInclude>
-    <ClInclude Include="ControlComponent.hpp">
-      <Filter>ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Components.hpp">
       <Filter>ECS</Filter>
     </ClInclude>
@@ -62,6 +59,12 @@
     </ClInclude>
     <ClInclude Include="Collision.hpp">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.hpp">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.hpp">
+      <Filter>Structs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
